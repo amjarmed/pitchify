@@ -1,0 +1,49 @@
+{
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit",
+      "source.addMissingImports": "explicit"
+    },
+    "prettier.tabWidth": 2,
+    "prettier.useTabs": false,
+    "prettier.semi": true,
+    "prettier.singleQuote": false,
+    "prettier.jsxSingleQuote": false,
+    "prettier.trailingComma": "es5",
+    "prettier.arrowParens": "always",
+    "[typescriptreact]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+
+    // Editor
+    "editor.detectIndentation": true,
+
+    "editor.formatOnSave": true,
+
+    // Search Exclusions
+    "search.exclude": {
+      "package-lock.json": true,
+      "yarn.lock": true,
+      "pnpm-lock.yaml": true,
+      "pnpm-workspace.yaml": true,
+      "node_modules": true,
+      "dist": true,
+      "build": true,
+      "**/node_modules/**": true,
+      "**/dist/**": true,
+      ".next": true,
+      "**/.next/**": true,
+      ".vscode": true,
+      "**/.vscode/**": true
+    },
+
+    "eslint.validate": [
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+      "html"
+    ],
+    "typescript.preferences.importModuleSpecifier": "non-relative",
+    "javascript.preferences.importModuleSpecifier": "non-relative"
+  }
