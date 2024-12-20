@@ -14,16 +14,16 @@ const Navbar = async () => {
         <div className='flex items-center gap-5 text-black'>
           {session && session?.user ? (
             <>
-              <link href='/startup/create'>
+              <Link href='/startup/create'>
                 <span>Create</span>
-              </link>
+              </Link>
               <form
                 action={async () => {
                   'use server';
-                  await signOut();
+                  await signOut({ redirectTo: '/' });
                 }}
               >
-                <Button type='submit'>
+                <Button type='submit' variant='ghost'>
                   <span>Logout</span>
                 </Button>
               </form>
@@ -39,7 +39,7 @@ const Navbar = async () => {
                   await signIn('github');
                 }}
               >
-                <Button type='submit'>
+                <Button type='submit' variant='ghost'>
                   <span>Login</span>
                 </Button>
               </form>
