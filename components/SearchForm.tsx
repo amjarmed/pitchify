@@ -1,22 +1,29 @@
+import SearchFormReset from '@/components/SearchFormReset';
+import { Button } from '@/components/ui/button';
+import { Search } from 'lucide-react';
 import Form from 'next/form';
 
-const SearchForm = () => {
-  const query = 'Test';
-  const reset = () => {};
+const SearchForm = async ({ query }: { query?: string }) => {
+  const q = await query;
+
   return (
     <Form action='/' scroll={false} className='search-form'>
       <input
         name='query'
-        defaultValue={query}
+        defaultValue={q}
         placeholder='Search Startups'
         className='search-input'
       />
       <div className='flex gap-2'>
-        {query && (
-          <button type='reset' className='search-btn' onClick={reset}>
-            Search
-          </button>
-        )}
+        {q && <SearchFormReset />}
+        <Button
+          variant='ghost'
+          type='submit'
+          className='search-btn text-white'
+          title='submit'
+        >
+          <Search className='size-5' />
+        </Button>
       </div>
     </Form>
   );
