@@ -1,12 +1,16 @@
 # Pitchify
 
-- 00:58:35:00 |
-- 01:09:27:00 |
-- 01:25:23:00 |
-- 01:47:34:00 |
-- 02:20:34:00 |
-  PITCH, VOTE, AND GROW
+PITCH, VOTE, AND GROW
+
+- 03:26:00:00 |
 
 ## typeScript Notes
 
 - using `any` :
+
+## steps to setup sanity
+
+- init (create project)
+- setup schema types
+- create structure
+- extract types

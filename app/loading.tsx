@@ -1,10 +1,9 @@
 export default function Loading() {
-    // You can add any UI inside Loading, including a Skeleton.
-    return (
-        <div className="flex items-center justify-center h-screen">
-            <div className="text-2xl font-bold">
-                <div className="h-5 w-5 border-b-2 border-gray-900 rounded-full animate-spin"></div>
-            </div>
-        </div>
-    )
-  }
+  // You can add any UI inside Loading, including a Skeleton.
+  return (
+    <div className='flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-400 to-cyan-400 text-white'>
+      <div className='animate-spin rounded-full h-16 w-16 border-t-4 border-white border-opacity-50'></div>
+      <p className='mt-4 text-lg font-semibold'>Loading, please wait...</p>
+    </div>
+  );
+}

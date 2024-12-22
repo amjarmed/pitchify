@@ -6,7 +6,10 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "predev": "pnpm typegen",
+    "prebuild": "pnpm typegen",
+    "typegen": "sanity schema extract --path=./sanity/extract.json && sanity typegen generate"
   },
   "packageManager": "pnpm@9.15.0",
   "overrides": {
@@ -20,19 +23,23 @@
     "@tailwindcss/typography": "github:tailwindcss/typography",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "easymde": "2",
     "lucide-react": "^0.468.0",
-    "next": "15.1.0",
+    "markdown-it": "^14.1.0",
+    "next": "15.1.1-canary.16",
     "next-auth": "5.0.0-beta.25",
     "next-sanity": "9",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "sanity": "3",
+    "sanity-plugin-markdown": "^5.0.0",
     "styled-components": "6",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@types/markdown-it": "^14.1.2",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

@@ -1,39 +1,23 @@
 import { Button } from '@/components/ui/button';
 import { formatDate } from '@/lib/utils';
+import { Author, Startup } from '@/sanity/types';
 import { Eye } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+export type StartupTypeCard = Omit<Startup, 'author'> & { author?: Author };
 
-type StartupTypeCard = {
-  _createdAt: Date;
-  views: number;
-  _id: number;
-  author: {
-    _id: number;
-    name: string;
-    avatar: string;
-  };
-  description: string;
-  image: string;
-  category: string;
-  title: string;
-};
-
-interface StartupTypeCardProps {
-  startup: StartupTypeCard;
-}
-
-const StartupCard = ({ startup }: StartupTypeCardProps) => {
+const StartupCard = ({ startup }: { startup: StartupTypeCard }) => {
   const {
     image,
     title,
     _createdAt,
     views,
-    author: { _id: authorId, name: authorName, avatar: authorAvatar },
+    author,
     description,
     category,
     _id,
   } = startup;
+
   return (
     <li className='startup-card group'>
       <div className=' flex-between'>
@@ -45,19 +29,19 @@ const StartupCard = ({ startup }: StartupTypeCardProps) => {
       </div>
       <div className='flex-between mt-5 gap-5'>
         <div className='flex-1'>
-          <Link href={`/user/${authorId}`}>
-            <p className=' text-16-medium  line-clamp-1 '>{authorName}</p>
+          <Link href={`/user/${author?._id}`}>
+            <p className=' text-16-medium  line-clamp-1 '>{author?.name}</p>
           </Link>
           <Link href={`/startup/${_id}`}>
             <h3 className='text-26-semibold'>{title}</h3>
           </Link>
         </div>
-        <Link href={`/user/${authorId}`}>
+        <Link href={`/user/${author?._id}`}>
           <Image
-            src={authorAvatar}
+            src={author?.image || ''}
             width={48}
             height={48}
-            alt={authorName}
+            alt={author?.name || ''}
             className='rounded-full'
           />
         </Link>
@@ -65,15 +49,15 @@ const StartupCard = ({ startup }: StartupTypeCardProps) => {
       <Link href={`/startup/${_id}`}>
         <p className='startup-card_desc'>{description}</p>
         <Image
-          src={image}
+          src={image || ''}
           width={400}
           height={200}
-          alt={authorName}
+          alt={title || ''}
           className='startup-card_img'
         />
       </Link>
       <div className='flex-between  gap-3 mt-5'>
-        <Link href={`/?query=${category.toLowerCase()}`}>
+        <Link href={`/?query=${category?.toLowerCase()}`}>
           <p className='text-16-medium'>{category}</p>
         </Link>
         <Button className='startup-card_btn' asChild>
