@@ -1,3 +1,4 @@
+import ImageBackUp from '@/components/ImageBackUp';
 import { Button } from '@/components/ui/button';
 import { formatDate } from '@/lib/utils';
 import { Author, Startup } from '@/sanity/types';
@@ -48,13 +49,7 @@ const StartupCard = ({ startup }: { startup: StartupTypeCard }) => {
       </div>
       <Link href={`/startup/${_id}`}>
         <p className='startup-card_desc'>{description}</p>
-        <Image
-          src={image || ''}
-          width={400}
-          height={200}
-          alt={title || ''}
-          className='startup-card_img'
-        />
+        <ImageBackUp image={image} title={title} />
       </Link>
       <div className='flex-between  gap-3 mt-5'>
         <Link href={`/?query=${category?.toLowerCase()}`}>

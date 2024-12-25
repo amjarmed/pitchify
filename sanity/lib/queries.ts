@@ -42,3 +42,15 @@ export const startup_Views_Query = defineQuery(`
     views,
 }
   `);
+
+export const authorQuery = defineQuery(`
+  *[_type=="author" && id==$id ][0]{
+  _id,
+  id,
+    name,
+    username,
+    image,
+    bio,
+    email
+}
+  `);

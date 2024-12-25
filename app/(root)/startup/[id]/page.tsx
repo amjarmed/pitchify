@@ -29,7 +29,9 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
           width={400}
           height={320}
           alt={startup.title}
-          className='w-full h-auto rounded-xl'
+          priority
+          quality={75}
+          className='w-full h-auto rounded-xl '
         />
         <div className='space-y-5 mt-10 max-w-4xl mx-auto'>
           <div className='flex-between gap-5'>

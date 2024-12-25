@@ -2,7 +2,7 @@
 
 PITCH, VOTE, AND GROW
 
-- 03:26:00:00 |
+- 04:33:51:00 |
 
 ## typeScript Notes
 
@@ -14,3 +14,7 @@ PITCH, VOTE, AND GROW
 - setup schema types
 - create structure
 - extract types
+
+## notes
+
+- useActionState() : to submit form data

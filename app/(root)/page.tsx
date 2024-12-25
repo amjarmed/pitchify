@@ -1,8 +1,11 @@
+import { auth } from '@/auth';
 import SearchForm from '@/components/SearchForm';
 import StartupCard, { StartupTypeCard } from '@/components/StartupCard';
+import { pitchArray } from '@/data/pitchs';
+import { createPitchApi } from '@/lib/actions';
 import { sanityFetch, SanityLive } from '@/sanity/lib/live';
 import { startupQuery } from '@/sanity/lib/queries';
-
+// import {deletePitch} from ''
 export default async function Home({
   searchParams,
 }: {
@@ -10,7 +13,19 @@ export default async function Home({
 }) {
   const query = (await searchParams).query;
   const params = { search: query || null };
+  const session = await auth();
+
   const { data: startups } = await sanityFetch({ query: startupQuery, params });
+  // check if the currentPitch is in the startups array, if exist pass it , if not add to db
+  pitchArray.forEach(async (pitch) => {
+    const exists = startups.some(
+      (startup: StartupTypeCard) => startup.title === pitch.title
+    );
+    if (!exists) {
+      await createPitchApi(pitch);
+    }
+  });
+
   return (
     <>
       {/* Hero Section  */}
