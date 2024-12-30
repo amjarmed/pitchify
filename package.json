@@ -24,7 +24,6 @@
     "@sanity/image-url": "1",
     "@sanity/vision": "3",
     "@sentry/nextjs": "8",
-    "@tailwindcss/typography": "github:tailwindcss/typography",
     "@uiw/react-md-editor": "^4.0.5",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -49,6 +48,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@tailwindcss/typography": "^0.5.15",
     "@types/markdown-it": "^14.1.2",
     "@types/node": "^20",
     "@types/react": "^19",
