@@ -19,7 +19,6 @@ const StartupCard = ({ startup }: { startup: StartupTypeCard }) => {
     category,
     _id,
   } = startup;
-  const alterImage = image || '';
   return (
     <li className='startup-card group'>
       <div className=' flex-between'>

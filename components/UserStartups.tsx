@@ -1,4 +1,3 @@
-import { auth } from '@/auth';
 import StartupCard, {
   StartupCardSkeleton,
   StartupTypeCard,
@@ -8,8 +7,6 @@ import { startups_By_Author_Query } from '@/sanity/lib/queries';
 import { Suspense } from 'react';
 
 const UserStartups = async ({ id }: { id: string }) => {
-  const session = await auth();
-
   const startups = await client.fetch(startups_By_Author_Query, {
     id: id,
   });

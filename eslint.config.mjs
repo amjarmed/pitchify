@@ -11,22 +11,15 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   ...compat.extends('next/core-web-vitals', 'next/typescript', 'prettier'),
+  ...compat.rules({
+    '@typescript-eslint/no-unused-vars': ['error'],
+    'prettier/prettier': ['error'],
+  }),
 ];
 
 export default eslintConfig;
 
 /*
 
-{
-  "extends": [
-    "next/core-web-vitals",
-    "plugin:@typescript-eslint/recommended",
-    "prettier"
-  ],
-  "rules": {
-    "@typescript-eslint/no-unused-vars": ["error"],
-    "prettier/prettier": ["error"]
-  }
-}
 
 */
