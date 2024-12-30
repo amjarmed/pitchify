@@ -1,4 +1,3 @@
-import { auth } from '@/auth';
 import SearchForm from '@/components/SearchForm';
 import { StartupTypeCard } from '@/components/StartupCard';
 import StartupsList from '@/components/StartupsList';
@@ -14,8 +13,6 @@ export default async function Home({
 }) {
   const query = (await searchParams).query;
   const params = { search: query || null };
-  const session = await auth();
-
   const { data: startups } = await sanityFetch({ query: startupQuery, params });
   // check if the currentPitch is in the startups array, if exist pass it , if not add to db
   pitchArray.forEach(async (pitch) => {
