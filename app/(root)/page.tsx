@@ -1,6 +1,7 @@
 import { auth } from '@/auth';
 import SearchForm from '@/components/SearchForm';
-import StartupCard, { StartupTypeCard } from '@/components/StartupCard';
+import { StartupTypeCard } from '@/components/StartupCard';
+import StartupsList from '@/components/StartupsList';
 import { pitchArray } from '@/data/pitchs';
 import { createPitchApi } from '@/lib/actions';
 import { sanityFetch, SanityLive } from '@/sanity/lib/live';
@@ -44,15 +45,7 @@ export default async function Home({
         <p className='text-30-semibold'>
           {query ? `Search Results for: ${query}` : 'Recommended startups'}
         </p>
-        <ul className='mt-7 card_grid'>
-          {startups?.length > 0 ? (
-            startups.map((startup: StartupTypeCard) => (
-              <StartupCard key={startup._id} startup={startup} />
-            ))
-          ) : (
-            <p>No startups found</p>
-          )}
-        </ul>
+        <StartupsList startups={startups} />
       </section>
       <SanityLive />
     </>

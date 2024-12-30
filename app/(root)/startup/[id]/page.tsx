@@ -1,8 +1,13 @@
+import ImageBackUp from '@/components/ImageBackUp';
+import StartupCard, { StartupTypeCard } from '@/components/StartupCard';
 import { Skeleton } from '@/components/ui/skeleton';
 import View from '@/components/View';
 import { formatDate } from '@/lib/utils';
 import { client } from '@/sanity/lib/client';
-import { startup_By_id_Query } from '@/sanity/lib/queries';
+import {
+  PLAYLIST_BY_SLUG_QUERY,
+  startup_By_id_Query,
+} from '@/sanity/lib/queries';
 import markdownit from 'markdown-it';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -12,10 +17,18 @@ const md = markdownit();
 export const experimental_ppr = true;
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const id = (await params).id;
-  const startup = await client.fetch(startup_By_id_Query, { id });
+
+  // parallel vs  squencial rending
+  const [startup, { select: editorPosts }] = await Promise.all([
+    client.fetch(startup_By_id_Query, { id }),
+    client.fetch(PLAYLIST_BY_SLUG_QUERY, {
+      slug: 'editor-picks',
+    }),
+  ]);
   if (!startup) return notFound();
 
   const parsedContent = md.render(startup.pitch || '');
+
   return (
     <>
       <section className='pink_container !min-h-[320px]'>
@@ -24,14 +37,11 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
         <p className='sub-heading !max-h-5xl'>{startup.description}</p>
       </section>
       <section className='section_container'>
-        <Image
-          src={startup.image}
+        <ImageBackUp
+          image={startup.image}
+          title={startup.title}
           width={400}
-          height={320}
-          alt={startup.title}
-          priority
-          quality={75}
-          className='w-full h-auto rounded-xl '
+          height={200}
         />
         <div className='space-y-5 mt-10 max-w-4xl mx-auto'>
           <div className='flex-between gap-5'>
@@ -68,7 +78,16 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
         <hr className='divider' />
         <div>
           <h3 className='text-30-bold'>Similar startups </h3>
-          {/* TODO: EDITOR SELECTED STARTUPS */}
+          {/* recommended startups */}
+          {editorPosts.length > 0 && (
+            <div className='max-w-4xl mx-auto'>
+              <ul className='mt-7 card_grid-sm'>
+                {editorPosts.map((post: StartupTypeCard, index: number) => (
+                  <StartupCard startup={post} key={index} />
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </section>
       <Suspense fallback={<Skeleton className='view_skeleton' />}>

@@ -2,7 +2,14 @@
 import Image from 'next/image';
 import { useState } from 'react';
 
-const ImageBackUp = ({ image, title }: { image?: string; title?: string }) => {
+interface ImageBackUpProps {
+  image?: string;
+  title?: string;
+  width?: number;
+  height?: number;
+}
+
+const ImageBackUp = ({ image, title }: ImageBackUpProps) => {
   const [error, setError] = useState(false);
 
   return (

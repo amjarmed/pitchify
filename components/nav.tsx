@@ -5,12 +5,12 @@ import { BadgePlus, LogIn, LogOut } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const Navbar = async () => {
+const Navbarxx = async () => {
   const session = await auth();
 
   return (
-    <header className='px-2 py-1 md:px-5 md:py-3   bg-white md:shadow-sm font-work-sans fixed top-0 md:top-5 left-0 right-0 z-50 md:max-w-7xl md:mx-auto md:rounded-[30px] shadow-sm  flex flex-col '>
-      <nav className='flex  justify-between items-center max-md:gap-5'>
+    <header className='px-5 py-3   bg-white mdshadow-sm font-work-sans md:fixed md:top-5 left-0 right-0 z-50 md:max-w-7xl md:mx-auto md:rounded-[30px] shadow-sm transition-all duration-300 hover:bg-gray-100 backdrop-blur-sm opacity-20 flex'>
+      <nav className='flex flex-col md:flex-row justify-between items-center max-md:gap-5'>
         <Link href='/'>
           <Image src='/logo.png' width={144} height={30} alt='logo' />
         </Link>
@@ -29,13 +29,13 @@ const Navbar = async () => {
               >
                 <Button type='submit' variant='ghost' className='text-primary '>
                   <span className='max-sm:hidden'>Logout</span>
-                  <LogOut className=' size-4  md:hidden text-red-500' />
+                  <LogOut className=' size-6 md:hidden text-red-500' />
                 </Button>
               </form>
               <Link href={`/user/${session?.id}`} className='flex items-center'>
                 <Avatar>
                   <AvatarImage
-                    className='size-6 md:size-10 rounded-full border border-primary p-[0.25px] shadow-sm'
+                    className='size-10 rounded-full'
                     alt={session?.user?.name}
                     src={session?.user?.image}
                   />
@@ -52,7 +52,7 @@ const Navbar = async () => {
                 }}
               >
                 <Button type='submit' variant='ghost'>
-                  <LogIn className='size-4  md:hidden text-primary' />
+                  <LogIn className='size-6 md:hidden text-primary' />
                   <span className='max-sm:hidden md:inline'>Login</span>
                 </Button>
               </form>
@@ -64,4 +64,4 @@ const Navbar = async () => {
   );
 };
 
-export default Navbar;
+export default Navbarxx;

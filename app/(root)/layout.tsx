@@ -7,6 +7,7 @@ export default function Layout({
   return (
     <main className='font-work-sans'>
       <Navbar />
+
       {children}
     </main>
   );

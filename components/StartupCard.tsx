@@ -1,6 +1,7 @@
 import ImageBackUp from '@/components/ImageBackUp';
 import { Button } from '@/components/ui/button';
-import { formatDate } from '@/lib/utils';
+import { Skeleton } from '@/components/ui/skeleton';
+import { cn, formatDate } from '@/lib/utils';
 import { Author, Startup } from '@/sanity/types';
 import { Eye } from 'lucide-react';
 import Image from 'next/image';
@@ -18,7 +19,7 @@ const StartupCard = ({ startup }: { startup: StartupTypeCard }) => {
     category,
     _id,
   } = startup;
-
+  const alterImage = image || '';
   return (
     <li className='startup-card group'>
       <div className=' flex-between'>
@@ -60,6 +61,18 @@ const StartupCard = ({ startup }: { startup: StartupTypeCard }) => {
         </Button>
       </div>
     </li>
+  );
+};
+
+export const StartupCardSkeleton = () => {
+  return (
+    <div>
+      {[0, 1, 2, 3, 4, 5].map((item: number) => (
+        <li key={cn('skeleton', item)} className='startup-card group'>
+          <Skeleton className='startup-card_skeleton' />
+        </li>
+      ))}
+    </div>
   );
 };
 
